@@ -1,0 +1,228 @@
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><ol>
+<li>
+<p><strong>initUrl()</strong></p>
+<ul>
+<li><strong>功能</strong>: 初始化并处理 URL，通过调用 <code>analyzeJs()</code> 和 <code>replaceKeyPageJs()</code> 方法来执行 JavaScript 代码和替换关键字。</li>
+</ul>
+</li>
+<li>
+<p><strong>analyzeJs()</strong></p>
+<ul>
+<li><strong>功能</strong>: 执行嵌入的 JavaScript 代码，并替换结果到 <code>ruleUrl</code> 中。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>replaceKeyPageJs()</strong></p>
+<ul>
+<li><strong>功能</strong>: 替换 URL 中的关键字、页码和 JavaScript 代码。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>analyzeUrl()</strong></p>
+<ul>
+<li><strong>功能</strong>: 解析 URL，处理可能存在的 URL 参数。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>evalJS(jsStr: String, result: Any? = null): Any?</strong></p>
+<ul>
+<li><strong>功能</strong>: 使用 Rhino 引擎执行 JavaScript 代码。</li>
+<li><strong>参数</strong>:
+<ul>
+<li><code>jsStr</code>: 要执行的 JavaScript 代码字符串。</li>
+<li><code>result</code>: 可选的初始结果参数，默认为 <code>null</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>put(key: String, value: String): String</strong></p>
+<ul>
+<li><strong>功能</strong>: 存储一个键值对。</li>
+<li><strong>参数</strong>:
+<ul>
+<li><code>key</code>: 键。</li>
+<li><code>value</code>: 值。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>get(key: String): String</strong></p>
+<ul>
+<li><strong>功能</strong>: 获取存储在 <code>chapter</code> 或 <code>ruleData</code> 中的变量。</li>
+<li><strong>参数</strong>:
+<ul>
+<li><code>key</code>: 要获取的键。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>fetchStart(): ConcurrentRecord?</strong></p>
+<ul>
+<li><strong>功能</strong>: 开始访问并进行并发判断。</li>
+<li><strong>参数</strong>: 无。</li>
+<li><strong>返回</strong>: <code>ConcurrentRecord</code> 对象或 <code>null</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>fetchEnd(concurrentRecord: ConcurrentRecord?)</strong></p>
+<ul>
+<li><strong>功能</strong>: 访问结束时的并发控制。</li>
+<li><strong>参数</strong>:
+<ul>
+<li><code>concurrentRecord</code>: 并发记录对象。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>getConcurrentRecord(): ConcurrentRecord?</strong></p>
+<ul>
+<li><strong>功能</strong>: 获取并发记录，若处于并发限制状态下则会等待。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>getStrResponseAwait(jsStr: String? = null, sourceRegex: String? = null, useWebView: Boolean = true): StrResponse</strong></p>
+<ul>
+<li><strong>功能</strong>: 异步访问网站并返回字符串响应。</li>
+<li><strong>参数</strong>:
+<ul>
+<li><code>jsStr</code>: 可选的 JavaScript 字符串。</li>
+<li><code>sourceRegex</code>: 可选的正则表达式。</li>
+<li><code>useWebView</code>: 是否使用 WebView。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>getStrResponse(jsStr: String? = null, sourceRegex: String? = null, useWebView: Boolean = true): StrResponse</strong></p>
+<ul>
+<li><strong>功能</strong>: 同步访问网站并返回字符串响应。</li>
+<li><strong>参数</strong>:
+<ul>
+<li><code>jsStr</code>: 可选的 JavaScript 字符串。</li>
+<li><code>sourceRegex</code>: 可选的正则表达式。</li>
+<li><code>useWebView</code>: 是否使用 WebView。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>getResponseAwait(): Response</strong></p>
+<ul>
+<li><strong>功能</strong>: 异步访问网站并返回响应对象。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>getResponse(): Response</strong></p>
+<ul>
+<li><strong>功能</strong>: 同步访问网站并返回响应对象。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>getByteArrayIfDataUri(): ByteArray?</strong></p>
+<ul>
+<li><strong>功能</strong>: 如果 URL 是数据 URI，则返回其字节数组。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>getByteArrayAwait(): ByteArray</strong></p>
+<ul>
+<li><strong>功能</strong>: 异步访问网站并返回字节数组。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>getByteArray(): ByteArray</strong></p>
+<ul>
+<li><strong>功能</strong>: 同步访问网站并返回字节数组。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>getInputStreamAwait(): InputStream</strong></p>
+<ul>
+<li><strong>功能</strong>: 异步访问网站并返回输入流。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>getInputStream(): InputStream</strong></p>
+<ul>
+<li><strong>功能</strong>: 同步访问网站并返回输入流。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>upload(fileName: String, file: Any, contentType: String): StrResponse</strong></p>
+<ul>
+<li><strong>功能</strong>: 上传文件。</li>
+<li><strong>参数</strong>:
+<ul>
+<li><code>fileName</code>: 文件名。</li>
+<li><code>file</code>: 文件对象。</li>
+<li><code>contentType</code>: 文件的内容类型。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>setCookie()</strong></p>
+<ul>
+<li><strong>功能</strong>: 设置 Cookie。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>saveCookie()</strong></p>
+<ul>
+<li><strong>功能</strong>: 保存 Cookie。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>getGlideUrl(): GlideUrl</strong></p>
+<ul>
+<li><strong>功能</strong>: 获取处理过的 <code>GlideUrl</code> 对象，用于图片加载。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>getMediaItem(): MediaItem</strong></p>
+<ul>
+<li><strong>功能</strong>: 获取 <code>MediaItem</code> 对象，用于媒体播放。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>getUserAgent(): String</strong></p>
+<ul>
+<li><strong>功能</strong>: 获取用户代理字符串。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>isPost(): Boolean</strong></p>
+<ul>
+<li><strong>功能</strong>: 判断请求方法是否为 POST。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+<li>
+<p><strong>getSource(): BaseSource?</strong></p>
+<ul>
+<li><strong>功能</strong>: 获取数据源。</li>
+<li><strong>参数</strong>: 无。</li>
+</ul>
+</li>
+</ol>
+</body></html>

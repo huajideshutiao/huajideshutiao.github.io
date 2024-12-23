@@ -1,0 +1,649 @@
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><h3>网络操作</h3>
+<ol>
+<li>
+<p><strong><code>ajax(url: Any): String?</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>url</code> - 目标请求的URL，可以是单个字符串或列表。</li>
+<li><strong>功能</strong>: 发送网络请求并返回响应的字符串内容。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>ajaxAll(urlList: Array&lt;String&gt;): Array&lt;StrResponse?&gt;</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>urlList</code> - URL数组。</li>
+<li><strong>功能</strong>: 并发发送多个网络请求，并返回响应数组。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>connect(urlStr: String): StrResponse</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>urlStr</code> - 请求的URL。</li>
+<li><strong>功能</strong>: 发送网络请求，并返回包含响应的对象。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>connect(urlStr: String, header: String?): StrResponse</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>urlStr</code> - 请求的URL。</li>
+<li><code>header</code> - 请求头信息的JSON字符串。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 带请求头发送网络请求，并返回响应对象。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>get(urlStr: String, headers: Map&lt;String, String&gt;): Connection.Response</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>urlStr</code> - 请求的URL。</li>
+<li><code>headers</code> - 请求头信息。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 执行GET请求，并返回响应对象。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>head(urlStr: String, headers: Map&lt;String, String&gt;): Connection.Response</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>urlStr</code> - 请求的URL。</li>
+<li><code>headers</code> - 请求头信息。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 执行HEAD请求，不返回响应体，节省流量。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>post(urlStr: String, body: String, headers: Map&lt;String, String&gt;): Connection.Response</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>urlStr</code> - 请求的URL。</li>
+<li><code>body</code> - 请求体内容。</li>
+<li><code>headers</code> - 请求头信息。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 执行POST请求，并返回响应对象。</li>
+</ul>
+</li>
+</ol>
+<h3>WebView交互</h3>
+<ol start="8">
+<li>
+<p><strong><code>webView(html: String?, url: String?, js: String?): String?</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>html</code> - 直接加载的HTML内容。</li>
+<li><code>url</code> - URL地址。</li>
+<li><code>js</code> - 要执行的JavaScript。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 使用WebView加载内容并返回JavaScript执行结果。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>webViewGetSource(html: String?, url: String?, js: String?, sourceRegex: String): String?</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>html</code> - HTML内容。</li>
+<li><code>url</code> - URL地址。</li>
+<li><code>js</code> - JavaScript代码。</li>
+<li><code>sourceRegex</code> - 用于匹配资源的正则表达式。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 使用WebView获取资源的URL。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>webViewGetOverrideUrl(html: String?, url: String?, js: String?, overrideUrlRegex: String): String?</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>html</code> - HTML内容。</li>
+<li><code>url</code> - URL地址。</li>
+<li><code>js</code> - JavaScript代码。</li>
+<li><code>overrideUrlRegex</code> - 用于匹配重定向URL的正则表达式。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 使用WebView获取重定向的URL。</li>
+</ul>
+</li>
+</ol>
+<h3>浏览器操作</h3>
+<ol start="11">
+<li>
+<p><strong><code>startBrowser(url: String, title: String)</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>url</code> - 要打开的链接。</li>
+<li><code>title</code> - 浏览器页面的标题。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 使用内置浏览器打开链接。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>startBrowserAwait(url: String, title: String): StrResponse</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>url</code> - 要打开的链接。</li>
+<li><code>title</code> - 浏览器页面的标题。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 打开链接并等待网页结果。</li>
+</ul>
+</li>
+</ol>
+<h3>文件操作</h3>
+<ol start="13">
+<li>
+<p><strong><code>importScript(path: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>path</code> - 脚本的路径，可以是网络路径或本地路径。</li>
+<li><strong>功能</strong>: 导入JavaScript脚本内容。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>cacheFile(urlStr: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>urlStr</code> - 网络文件的URL。</li>
+<li><strong>功能</strong>: 缓存以文本方式保存的文件，并返回其内容。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>cacheFile(urlStr: String, saveTime: Int): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>urlStr</code> - 网络文件的URL。</li>
+<li><code>saveTime</code> - 缓存时间（秒）。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 缓存文件并指定缓存时间。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>downloadFile(url: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>url</code> - 下载地址。</li>
+<li><strong>功能</strong>: 下载文件并返回其相对路径。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>deleteFile(path: String): Boolean</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>path</code> - 文件的相对路径。</li>
+<li><strong>功能</strong>: 删除本地文件。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>unzipFile(zipPath: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>zipPath</code> - ZIP文件的相对路径。</li>
+<li><strong>功能</strong>: 解压ZIP文件。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>un7zFile(zipPath: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>zipPath</code> - 7z文件的相对路径。</li>
+<li><strong>功能</strong>: 解压7z文件。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>unrarFile(zipPath: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>zipPath</code> - RAR文件的相对路径。</li>
+<li><strong>功能</strong>: 解压RAR文件。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>unArchiveFile(zipPath: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>zipPath</code> - 压缩文件的相对路径。</li>
+<li><strong>功能</strong>: 解压压缩文件。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>getTxtInFolder(path: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>path</code> - 文件夹的相对路径。</li>
+<li><strong>功能</strong>: 读取文件夹内所有文本文件内容。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>getZipStringContent(url: String, path: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>url</code> - ZIP文件的链接或十六进制字符串。</li>
+<li><code>path</code> - ZIP内文件的路径。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 获取ZIP文件中指定文件的字符串内容。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>getRarStringContent(url: String, path: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>url</code> - RAR文件的链接或十六进制字符串。</li>
+<li><code>path</code> - RAR内文件的路径。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 获取RAR文件中指定文件的字符串内容。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>get7zStringContent(url: String, path: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>url</code> - 7z文件的链接或十六进制字符串。</li>
+<li><code>path</code> - 7z内文件的路径。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 获取7z文件中指定文件的字符串内容。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>getZipByteArrayContent(url: String, path: String): ByteArray?</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>url</code> - ZIP文件的链接或十六进制字符串。</li>
+<li><code>path</code> - ZIP内文件的路径。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 获取ZIP文件中指定文件的字节数组。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>getRarByteArrayContent(url: String, path: String): ByteArray?</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>url</code> - RAR文件的链接或十六进制字符串。</li>
+<li><code>path</code> - RAR内文件的路径。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 获取RAR文件中指定文件的字节数组。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>get7zByteArrayContent(url: String, path: String): ByteArray?</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>url</code> - 7z文件的链接或十六进制字符串。</li>
+<li><code>path</code> - 7z内文件的路径。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 获取7z文件中指定文件的字节数组。</li>
+</ul>
+</li>
+</ol>
+<h3>编码与解码</h3>
+<ol start="29">
+<li>
+<p><strong><code>strToBytes(str: String): ByteArray</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>str</code> - 输入字符串。</li>
+<li><strong>功能</strong>: 将字符串转换为UTF-8字节数组。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>strToBytes(str: String, charset: String): ByteArray</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>str</code> - 输入字符串。</li>
+<li><code>charset</code> - 字符集名称。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 按指定字符集将字符串转换为字节数组。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>bytesToStr(bytes: ByteArray): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>bytes</code> - 输入字节数组。</li>
+<li><strong>功能</strong>: 将UTF-8字节数组转换为字符串。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>bytesToStr(bytes: ByteArray, charset: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>bytes</code> - 输入字节数组。</li>
+<li><code>charset</code> - 字符集名称。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 按指定字符集将字节数组转换为字符串。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>base64Decode(str: String?): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>str</code> - Base64编码的字符串。</li>
+<li><strong>功能</strong>: 解码Base64字符串。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>base64Decode(str: String?, charset: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>str</code> - Base64编码的字符串。</li>
+<li><code>charset</code> - 字符集名称。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 按指定字符集解码Base64字符串。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>base64Decode(str: String, flags: Int): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>str</code> - Base64编码的字符串。</li>
+<li><code>flags</code> - 解码标志。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 带标志解码Base64字符串。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>base64DecodeToByteArray(str: String?): ByteArray?</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>str</code> - Base64编码的字符串。</li>
+<li><strong>功能</strong>: 解码Base64字符串为字节数组。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>base64DecodeToByteArray(str: String?, flags: Int): ByteArray?</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>str</code> - Base64编码的字符串。</li>
+<li><code>flags</code> - 解码标志。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 带标志解码Base64字符串为字节数组。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>base64Encode(str: String): String?</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>str</code> - 输入字符串。</li>
+<li><strong>功能</strong>: 编码字符串为Base64。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>base64Encode(str: String, flags: Int): String?</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>str</code> - 输入字符串。</li>
+<li><code>flags</code> - 编码标志。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 带标志编码字符串为Base64。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>hexDecodeToByteArray(hex: String): ByteArray?</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>hex</code> - 十六进制字符串。</li>
+<li><strong>功能</strong>: 解码十六进制字符串为字节数组。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>hexDecodeToString(hex: String): String?</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>hex</code> - 十六进制字符串。</li>
+<li><strong>功能</strong>: 解码十六进制字符串为UTF-8字符串。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>hexEncodeToString(utf8: String): String?</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>utf8</code> - UTF-8字符串。</li>
+<li><strong>功能</strong>: 编码UTF-8字符串为十六进制字符串。</li>
+</ul>
+</li>
+</ol>
+<h3>时间与格式化</h3>
+<ol start="43">
+<li>
+<p><strong><code>timeFormatUTC(time: Long, format: String, sh: Int): String?</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>time</code> - 时间戳。</li>
+<li><code>format</code> - 时间格式。</li>
+<li><code>sh</code> - 时区偏移量。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 格式化时间为UTC格式。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>timeFormat(time: Long): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>time</code> - 时间戳。</li>
+<li><strong>功能</strong>: 格式化时间。</li>
+</ul>
+</li>
+</ol>
+<h3>字符编码转换</h3>
+<ol start="45">
+<li>
+<p><strong><code>utf8ToGbk(str: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>str</code> - UTF-8编码的字符串。</li>
+<li><strong>功能</strong>: 将UTF-8字符串转换为GBK编码。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>encodeURI(str: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>str</code> - 输入字符串。</li>
+<li><strong>功能</strong>: 使用UTF-8编码对字符串进行URI编码。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>encodeURI(str: String, enc: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>str</code> - 输入字符串。</li>
+<li><code>enc</code> - 编码字符集。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 使用指定字符集对字符串进行URI编码。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>htmlFormat(str: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>str</code> - HTML字符串。</li>
+<li><strong>功能</strong>: 格式化HTML字符串。</li>
+</ul>
+</li>
+</ol>
+<h3>字体操作</h3>
+<ol start="49">
+<li>
+<p><strong><code>queryBase64TTF(data: String?): QueryTTF?</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>data</code> - Base64编码的字体数据。</li>
+<li><strong>功能</strong>: 解析字体Base64数据，返回字体解析类。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>queryTTF(data: Any?, useCache: Boolean): QueryTTF?</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>data</code> - 支持URL、本地文件、Base64、ByteArray。</li>
+<li><code>useCache</code> - 是否使用缓存。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 返回字体解析类。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>queryTTF(data: Any?): QueryTTF?</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>data</code> - 支持URL、本地文件、Base64、ByteArray。</li>
+<li><strong>功能</strong>: 返回字体解析类（默认使用缓存）。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>replaceFont(text: String, errorQueryTTF: QueryTTF?, correctQueryTTF: QueryTTF?, filter: Boolean): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>text</code> - 包含错误字体的内容。</li>
+<li><code>errorQueryTTF</code> - 错误的字体解析类。</li>
+<li><code>correctQueryTTF</code> - 正确的字体解析类。</li>
+<li><code>filter</code> - 是否删除错误字体中不存在的字符。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 替换字体。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>replaceFont(text: String, errorQueryTTF: QueryTTF?, correctQueryTTF: QueryTTF?): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>text</code> - 包含错误字体的内容。</li>
+<li><code>errorQueryTTF</code> - 错误的字体解析类。</li>
+<li><code>correctQueryTTF</code> - 正确的字体解析类。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 替换字体。</li>
+</ul>
+</li>
+</ol>
+<h3>其他实用功能</h3>
+<ol start="54">
+<li>
+<p><strong><code>t2s(text: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>text</code> - 繁体中文文本。</li>
+<li><strong>功能</strong>: 将繁体中文转换为简体中文。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>s2t(text: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>text</code> - 简体中文文本。</li>
+<li><strong>功能</strong>: 将简体中文转换为繁体中文。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>getWebViewUA(): String</code></strong></p>
+<ul>
+<li><strong>功能</strong>: 获取WebView的默认用户代理字符串。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>getCookie(tag: String): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>tag</code> - Cookie的标识。</li>
+<li><strong>功能</strong>: 获取Cookie。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>getCookie(tag: String, key: String?): String</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>tag</code> - Cookie的标识。</li>
+<li><code>key</code> - Cookie的键。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 获取指定键的Cookie。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>toNumChapter(s: String?): String?</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>s</code> - 包含章节数字的字符串。</li>
+<li><strong>功能</strong>: 将章节数转换为数字。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>toURL(urlStr: String): JsURL</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>urlStr</code> - URL字符串。</li>
+<li><strong>功能</strong>: 转换字符串为<code>JsURL</code>对象。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>toURL(url: String, baseUrl: String? = null): JsURL</code></strong></p>
+<ul>
+<li><strong>参数</strong>:
+<ul>
+<li><code>url</code> - URL字符串。</li>
+<li><code>baseUrl</code> - 可选的基URL。</li>
+</ul>
+</li>
+<li><strong>功能</strong>: 转换字符串为<code>JsURL</code>对象。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>toast(msg: Any?)</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>msg</code> - 要显示的消息。</li>
+<li><strong>功能</strong>: 显示短时间的Toast消息。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>longToast(msg: Any?)</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>msg</code> - 要显示的消息。</li>
+<li><strong>功能</strong>: 显示长时间的Toast消息。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>log(msg: Any?): Any?</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>msg</code> - 要记录的消息。</li>
+<li><strong>功能</strong>: 输出调试日志。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>logType(any: Any?)</code></strong></p>
+<ul>
+<li><strong>参数</strong>: <code>any</code> - 要检查类型的对象。</li>
+<li><strong>功能</strong>: 输出对象的类型。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>randomUUID(): String</code></strong></p>
+<ul>
+<li><strong>功能</strong>: 生成一个随机的UUID。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>androidId(): String</code></strong></p>
+<ul>
+<li><strong>功能</strong>: 获取Android设备的ID。</li>
+</ul>
+</li>
+</ol>
+</body></html>
