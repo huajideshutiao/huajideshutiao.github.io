@@ -53,6 +53,7 @@ https://www.baidu.com,{
 
 <h2>常用内置变量及函数</h2>
 <p>完整函数可以前往<a href="https://github.com/gedoor/legado/blob/master/app/src/main/assets/web/help/md/jsHelp.md">jsHelp.md</a>和<a href="https://github.com/gedoor/legado/blob/master/app/src/main/java/io/legado/app/help/JsExtensions.kt">JsExtensions.kt</a></p>
+<p><a href="/方法-登录检查JS.md">方法-登录检查JS.md</a>和<a href="/方法-JS扩展类.md">方法-JS扩展类.md</a>也有函数列表</p>
 <ul>
     <li><code>baseUrl</code> - 当前url</li>
     <li><code>result</code> - 上一步的结果</li>
@@ -168,9 +169,9 @@ cache.putMemory(key: String, value: Any)</pre>
 <pre>var javaImport = new JavaImporter();
 javaImport.importPackage(Packages.java.lang);
 with(javaImport) { ...... }</pre>
-<h2>发现页url</h2>
-<p>可以是<pre>首页::/</pre></p>
-<p>或者</p>
+<h2>发现页url可以为</h2>
+<pre>首页::/</pre>
+<p>或</p>
 <pre>[{"title": "首页",
   "url": "/",
   "style": {
