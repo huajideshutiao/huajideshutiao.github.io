@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阅读书源指南</title>
+    <style>
+        body {
+            line-height: 1.6;
+            margin: 20px;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #F7F8FA;
+            padding: 15px 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            background-color: #F0F1F3;
+            padding: 3px 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>阅读书源指南</h1>
+<p>本指南参考了喵公子的规则说明和阅读仓库的jshelp等文档，需要有一定基础。</p>
+
+<h2>工具箱</h2>
+<ul>
+    <li><a href="https://www.toolhelper.cn/Char/RegexTest">正则表达式</a></li>
+    <li><a href="https://www.toolhelper.cn/EncodeDecode/Url">url编解码</a></li>
+    <li><a href="https://try.jsoup.org/">css选择器</a></li>
+    <li><a href="https://www.jsonpath.cn/">JSONPath</a></li>
+</ul>
+
+<h2>url附加参数</h2>
+<pre>
+https://www.baidu.com,{
+    "charset": "这里是编码",
+    "method": "POST",
+    "body": "......",
+    "headers": {......},
+    "js": "解析完url参数时执行，结果会赋值给url",
+    "webView": true,
+    "proxy": "socks5://127.0.0.1:1080@用户名@密码"
+}
+</pre>
+<p>配置需要的项目即可，完整参数见<a href="https://github.com/gedoor/legado/blob/master/app/src/main/java/io/legado/app/model/analyzeRule/AnalyzeUrl.kt">此处</a>的<code>data class UrlOption()</code></p>
+
+<h2>常用内置变量及函数</h2>
+<p>完整函数可以前往<a href="https://github.com/gedoor/legado/blob/master/app/src/main/assets/web/help/md/jsHelp.md">jsHelp.md</a>和<a href="https://github.com/gedoor/legado/blob/master/app/src/main/java/io/legado/app/help/JsExtensions.kt">JsExtensions.kt</a></p>
+<ul>
+    <li><code>baseUrl</code> - 当前url</li>
+    <li><code>result</code> - 上一步的结果</li>
+    <li><code>title</code> - 章节当前标题</li>
+    <li><code>src</code> - 请求返回的源码</li>
+</ul>
+
+<h3>当前类部分函数</h3>
+<pre>//设置页面源码和解析元素
+java.setContent(content: Any?, baseUrl: String? = null)
+java.getElement(ruleStr: String)
+java.getElements(ruleStr: String)
+
+//刷新书籍和目录
+java.reGetBook()
+java.refreshTocUrl()
+
+//变量存取
+java.get(key)
+java.put(key, value)
+
+//网络请求
+java.ajax(urlStr): String
+java.ajaxAll(urlList: Array<String>): Array<StrResponse?>
+java.connect(urlStr): StrResponse
+java.post(url: String, body: String, headerMap: Map<String, String>): Connection.Response
+java.get(url: String, headerMap: Map<String, String>): Connection.Response
+java.head(url: String, headerMap: Map<String, String>): Connection.Response
+java.startBrowser(url: String, title: String)
+java.startBrowserAwait(url: String, title: String, refetchAfterSuccess: Boolean? = true): StrResponse
+
+//提示
+java.log(msg)
+java.logType(var)
+java.longToast(msg: Any?)
+java.toast(msg: Any?)
+
+//charset可不写
+java.strToBytes(str: String, charset: String)
+java.bytesToStr(bytes: ByteArray, charset: String)
+
+java.base64Decode(str: String, charset: String)
+java.base64Encode(str: String, flags: Int)
+java.timeFormatUTC(time: Long, format: String, sh: Int): String?
+
+//转为简体，第二个相反
+java.t2s(text: String): String
+java.s2t(text: String): String</pre>
+<h3>book对象</h3>
+<ul>
+    <li><code>bookUrl</code> - 详情页Url或路径</li>
+    <li><code>tocUrl</code> - 目录页Url</li>
+    <li><code>origin</code> - 书源URL</li>
+    <li><code>originName</code> - 书源名称或文件名</li>
+    <li><code>name</code> - 书籍名称(书源获取)</li>
+    <li><code>author</code> - 作者名称(书源获取)</li>
+    <li><code>kind</code> - 分类信息(书源获取)</li>
+    <li><code>coverUrl</code> - 封面Url(书源获取)</li>
+    <li><code>intro</code> - 简介内容(书源获取)</li>
+    <li><code>type</code> - 0:text 1:audio</li>
+    <li><code>group</code> - 自定义分组索引号</li>
+    <li><code>latestChapterTime</code> - 最新章节标题更新时间</li>
+    <li><code>lastCheckTime</code> - 最近一次更新书籍信息的时间</li>
+    <li><code>canUpdate</code> - 刷新书架时更新书籍信息</li>
+    <li><code>variable</code> - 自定义变量</li>
+</ul>
+<h3>chapter对象</h3>
+<ul>
+    <li><code>url</code> - 章节地址</li>
+    <li><code>title</code> - 章节标题</li>
+    <li><code>baseUrl</code> - 用来拼接相对url</li>
+    <li><code>bookUrl</code> - 书籍地址</li>
+    <li><code>variable</code> - 变量</li>
+</ul>
+<h3>source类部分函数</h3>
+<pre>source.getKey() //获取源url
+
+//源变量
+source.setVariable(variable: String?)
+source.getVariable()
+
+//请求头
+source.getLoginHeader()
+source.getLoginHeaderMap().get(key: String)
+source.putLoginHeader(header: String)
+source.removeLoginHeader()
+
+//登录信息
+source.getLoginInfo()
+source.getLoginInfoMap().get(key: String)
+source.removeLoginInfo()</pre>
+<h3>cookie对象的部分可用函数</h3>
+<pre>cookie.getCookie(url)
+cookie.getKey(url, key)
+cookie.setCookie(url, cookie)
+cookie.replaceCookie(url, cookie)
+cookie.removeCookie(url)</pre>
+<h3>cache对象的部分可用函数</h3>
+<pre>cache.deleteMemory(key: String)
+cache.getFromMemory(key: String): Any?
+cache.putMemory(key: String, value: Any)</pre>
+<h2><code>{{}}</code>的使用</h2>
+<p>搜索URL与发现URL中只能使用js，且有page和key变量，前者为页数，从1开始，后者为搜索关键词。</p>
+<p>其他地方应该在对应规则前加标识，Default规则需要以<code>@@</code>开头，XPath需要以<code>@xpath:</code>或<code>//</code>开头，JSONPath需要以<code>@json:</code>或<code>$.</code>开头，CSS需要以<code>@css:</code>开头。</p>
+<p>任何与url相关的地方都可以返回<code>'{{这里是代码}}'</code>，阅读会解析url并执行</p>
+<h2>变量put与get</h2>
+<p>只有使用JSONPath不需要加引号：</p>
+<pre>@put:{bid:"@@class.pid@text"}
+@get:{bid}</pre>
+
+<h2>调用java函数</h2>
+<p>可以如<code>io.legado.app.utils.htmlFormat(str)</code>以包名开头，或导入包，以<code>Packages</code>开头：</p>
+<pre>var javaImport = new JavaImporter();
+javaImport.importPackage(Packages.java.lang);
+with(javaImport) { ...... }</pre>
+<h2>发现页url可以为</h2>
+<pre>首页::/</pre>
+<p>或</p>
+<pre>[{"title": "首页",
+  "url": "/",
+  "style": {
+     "layout_flexGrow": 0,
+     "layout_flexShrink": 1,
+     "layout_alignSelf": "auto",
+     "layout_flexBasisPercent": -1,
+     "layout_wrapBefore": true
+  }
+}]</pre>
+<h2>一些有用的代码片段和思路</h2>
+    <li>对于某些视频源，希望直接弹出浏览器观看，可以用这个(设置了静音自动播放)：</li>
+    <p>正文规则:</p>
+    <pre>[包含视频链接的元素]@html
+@js:const regex = /url=(.*?)"/;
+const url = result.match(regex)[1];
+const html = `data:text/html;charset=utf-8,&lt;html&gt;&lt;head&gt;&lt;meta name="viewport" content="width=device-width"&gt;&lt;style&gt;body {display: flex;justify-content: center;align-items: center;background-color: black;margin: 0;}video {max-width: 100%;max-height: 100%;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;&lt;video controls autoplay muted&gt;&lt;source src="${url}"&gt;&lt;/video&gt;&lt;/body&gt;&lt;/html&gt;`;
+java.startBrowser(html, java.get('t'));
+' 【刷新正文】或【点击章节链接】跳转播放\n🔗直链:\n' + url
+    </pre>
+    <li>对于某些搜索或发现下一页url位于页面中，可以用这个：</li>
+    <pre>//将搜索或发现url改为
+{{page == 1 ? '这里是原本的url' + key : cache.getFromMemory('url')}}
+//在书籍列表规则后加上
+@js:cache.putMemory('url', java.getElement('这里是下一页链接所在元素的规则')); result</pre>
+    <li>如果目录下一页变化比较多，不好写，可以获取总共有多少页，构造所有页的url并返回url数组。</li>
+</body>
+</html>
